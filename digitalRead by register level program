@@ -1,0 +1,33 @@
+using arduino i read the digitalinput value using register level program 
+here i use data direction register for set input or output 
+also an port register for output and "pulla up the input pin"
+after that 
+i use pin register to read value from the pin
+______________________________________________________________________________________________________________
+here is my program :
+#define ddr (*(volatile int8_t *)0x24)
+#define pin (*(volatile int8_t *)0x23)
+#define port (*(volatile int8_t *)0x25)
+void setup() {
+ddr &= ~(0b00000001);
+ddr |= (0b00000010);
+port |= (0b00000001);
+
+while(1)
+{
+  if (!(pin & 0b00000001))
+  {
+    port |= 0x02; 
+  }
+  else 
+  {
+    port &= ~(1<<1);
+  }
+}
+}
+
+void loop() {
+}
+________________________________________________________________________________________________________________
+the output video:
+https://youtu.be/Qfb5iLhGCNk
