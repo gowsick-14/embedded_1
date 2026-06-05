@@ -1,0 +1,20 @@
+im using the same register level program in arduino uno 
+here is the code 
+
+#define enable (*(volatile uint8_t *)0x24)
+#define value (*(volatile uint8_t *)0x25)
+void setup() {
+  // put your setup code here, to run once:
+enable |= (1<<5);
+
+while(1)
+{
+  value |= 0b00100000;
+  delay(1000);
+  value &= ~(0b00100000);
+}
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+}
