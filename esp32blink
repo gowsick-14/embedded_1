@@ -1,0 +1,23 @@
+esp32 led blinking using register level program 
+____________________________________________________________________________________________________
+the code that i used :
+#include <stdio.h>
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+//the first three line i used in wokwi librareies to acesss esp32
+#define set (*(volatile uint32_t *)0x3FF44020)           
+#define value (*(volatile uint32_t *)0x3FF44004)
+void app_main() {
+  set |= (1<<5);
+  printf("Hello, Wokwi!\n");
+  while (true) {
+    
+    value |= (1<<5);
+    vTaskDelay(100);
+    value &= ~(1<<5);
+    vTaskDelay(100);
+  }
+}
+________________________________________________________________________________
+the output link :
+https://youtu.be/a3mmHzJRYxs
